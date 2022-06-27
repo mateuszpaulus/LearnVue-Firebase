@@ -13,9 +13,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'singleline-html-element-content-newline': 'off',
-    'vue/multiline-html-element-content-newline': 'off',
-    'max-len': 0,
+    // 'max-len': 0,
     'linebreak-style': 0,
     'template-curly-spacing': 'off',
     indent: [
@@ -26,5 +24,6 @@ module.exports = {
       },
     ],
     'no-unused-vars': 'off',
+    'vue/max-attributes-per-line': ['error', { singleline: { max: 3 }, multiline: { max: 3 } }],
   },
 };
