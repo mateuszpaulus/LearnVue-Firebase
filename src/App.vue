@@ -1,53 +1,103 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer />
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
+  <div class="app-wrapper">
+    <div class="app">
+      <NavigationVue />
       <router-view />
-    </v-main>
-  </v-app>
+      <FooterVue />
+    </div>
+  </div>
 </template>
 
 <script>
+import NavigationVue from '@/components/Navigation.vue';
+import FooterVue from '@/components/Footer.vue';
+
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
+  components: {
+    NavigationVue,
+    FooterVue,
+  },
 };
 </script>
+
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+.link-light {
+  color: #fff;
+}
+.arrow {
+  margin-left: 8px;
+  width: 12px;
+  path {
+    fill: #000;
+  }
+}
+.arrow-light {
+  path {
+    fill: #fff;
+  }
+}
+.router-button {
+  transition: 500ms ease all;
+  cursor: pointer;
+  margin-top: 24px;
+  padding: 12px 24px;
+  background-color: #303030;
+  color: #fff;
+  border-radius: 20px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: rgba(48, 48, 48, 0.7);
+  }
+}
+.post-card-wrap {
+  position: relative;
+  padding: 80px 16px;
+  background-color: #f1f1f1;
+  @media (min-width: 500px) {
+    padding: 100px 16px;
+  }
+  .post-cards {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr;
+    @media (min-width: 500px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 900px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+</style>
