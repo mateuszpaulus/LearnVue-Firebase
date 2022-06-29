@@ -1,22 +1,43 @@
 <template>
   <div class="app-wrapper">
     <div class="app">
-      <NavigationVue />
+      <NavigationComponent v-if="!navigation" />
       <router-view />
-      <FooterVue />
+      <FooterComponent v-if="!navigation" />
     </div>
   </div>
 </template>
 
 <script>
-import NavigationVue from '@/components/Navigation.vue';
-import FooterVue from '@/components/Footer.vue';
+import NavigationComponent from '@/components/Navigation.vue';
+import FooterComponent from '@/components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
-    NavigationVue,
-    FooterVue,
+    NavigationComponent,
+    FooterComponent,
+  },
+  data() {
+    return {
+      navigation: null,
+    };
+  },
+  watch: {
+    $route() {
+      this.checkRoute();
+    },
+  },
+  created() {
+    this.checkRoute();
+  },
+  methods: {
+    checkRoute() {
+      if (this.$route.name === 'LoginView' || this.$route.name === 'RegisterView' || this.$route.name === 'ForgotPasswordView') {
+        this.navigation = true;
+        return;
+      } this.navigation = false;
+    },
   },
 };
 </script>
@@ -69,7 +90,7 @@ export default {
   padding: 12px 24px;
   background-color: #303030;
   color: #fff;
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
   &:focus {
     outline: none;
