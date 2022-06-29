@@ -43,7 +43,7 @@
 import { mdiArrowRight } from '@mdi/js';
 
 export default {
-  name: 'PostVue',
+  name: 'PostComponent',
   props: {
     post: {
       type: Object,
