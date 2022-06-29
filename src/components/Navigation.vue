@@ -8,16 +8,16 @@
       </div>
       <div class="nav-links">
         <ul v-show="!mobile">
-          <router-link class="link" to="#">
+          <router-link class="link" :to="{ name: 'WelcomeView'}">
             Welcome
           </router-link>
-          <router-link class="link" to="#">
+          <router-link class="link" :to="{ name: 'PostsView'}">
             Posts
           </router-link>
           <router-link class="link" to="#">
             Create Post
           </router-link>
-          <router-link class="link" to="#">
+          <router-link class="link" :to="{ name: 'LoginView'}">
             Login/Register
           </router-link>
         </ul>
@@ -28,16 +28,16 @@
     </v-icon>
     <transition name="mobile-nav">
       <ul v-show="mobileNav" class="mobile-nav">
-        <router-link class="link" to="#">
+        <router-link class="link" :to="{ name: 'WelcomeView'}">
           Welcome
         </router-link>
-        <router-link class="link" to="#">
+        <router-link class="link" :to="{ name: 'PostsView'}">
           Posts
         </router-link>
         <router-link class="link" to="#">
           Create Post
         </router-link>
-        <router-link class="link" to="#">
+        <router-link class="link" :to="{ name: 'LoginView'}">
           Login/Register
         </router-link>
       </ul>
@@ -49,7 +49,7 @@
 import { mdiMenu } from '@mdi/js';
 
 export default {
-  name: 'NavigationVue',
+  name: 'NavigationComponent',
   data() {
     return {
       mdiMenu,
