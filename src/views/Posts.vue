@@ -3,7 +3,7 @@
     <div class="post-cards container">
       <div class="toggle-edit">
         <span>Toggle Editing Post</span>
-        <input v-model="editPost" type="checkbox" aria-label="editPost">
+        <input v-model="editPost" type="checkbox" aria-label="editPost" />
       </div>
       <PostCardVue v-for="(post, index) in samplePostCards" :key="index" :post="post" />
     </div>
@@ -50,7 +50,7 @@ export default {
       margin-right: 16px;
     }
 
-    input[type="checkbox"] {
+    input[type='checkbox'] {
       position: relative;
       border: none;
       -webkit-appearance: none;
@@ -62,8 +62,8 @@ export default {
       box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.1), 0 2px 4px 1px rgba(0, 0, 0, 0.06);
     }
 
-    input[type="checkbox"]:before {
-      content: "";
+    input[type='checkbox']:before {
+      content: '';
       position: absolute;
       width: 30px;
       height: 30px;
@@ -76,7 +76,7 @@ export default {
       box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
-    input:checked[type="checkbox"]:before {
+    input:checked[type='checkbox']:before {
       background: #fff;
       left: 50px;
     }
