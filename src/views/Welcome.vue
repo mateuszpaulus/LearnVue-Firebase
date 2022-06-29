@@ -1,12 +1,12 @@
 .<template>
   <div class="welcome">
-    <PostVue :post="welcomeScreen" />
-    <PostVue v-for="(post, index) in samplePost" :key="index" :post="post" />
+    <PostComponent :post="welcomeScreen" />
+    <PostComponent v-for="(post, index) in samplePost" :key="index" :post="post" />
     <div class="post-card-wrap">
       <div class="container">
-        <h3>View More Recent BLogs</h3>
+        <h3>View More Recent Blogs</h3>
         <div class="post-cards">
-          <PostCards v-for="(post, index) in samplePostCards" :key="index" :post="post" />
+          <PostCardComponent v-for="(post, index) in samplePostCards" :key="index" :post="post" />
         </div>
       </div>
     </div>
@@ -25,13 +25,13 @@
 </template>
 
 <script>
-import PostVue from '@/components/Post.vue';
-import PostCards from '@/components/PostCard.vue';
+import PostComponent from '@/components/Post.vue';
+import PostCardComponent from '@/components/PostCard.vue';
 import { mdiArrowRight } from '@mdi/js';
 
 export default {
   name: 'WelcomeView',
-  components: { PostVue, PostCards },
+  components: { PostComponent, PostCardComponent },
   data() {
     return {
       mdiArrowRight,
@@ -56,13 +56,12 @@ export default {
           postCoverPhoto: 'designed-for-everyone',
         },
       ],
-      samplePostCards: [
-        { postTitle: 'Post Card #1', postCoverPhoto: 'stock-1', postDate: 'June 28, 2022' },
-        { postTitle: 'Post Card #2', postCoverPhoto: 'stock-2', postDate: 'June 28, 2022' },
-        { postTitle: 'Post Card #3', postCoverPhoto: 'stock-3', postDate: 'June 28, 2022' },
-        { postTitle: 'Post Card #4', postCoverPhoto: 'stock-4', postDate: 'June 28, 2022' },
-      ],
     };
+  },
+  computed: {
+    samplePostCards() {
+      return this.$store.state.samplePostCards;
+    },
   },
 };
 </script>
