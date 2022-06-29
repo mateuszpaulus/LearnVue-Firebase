@@ -2,9 +2,7 @@
   <div class="modal">
     <div class="modal-content">
       <p>{{ modalMessage }}</p>
-      <button class="router-button" @click="closeModal">
-        Close
-      </button>
+      <button class="router-button" @click="closeModal">Close</button>
     </div>
   </div>
 </template>
@@ -14,7 +12,7 @@ export default {
   name: 'ModalComponent',
   props: {
     modalMessage: {
-      type: Object,
+      type: String,
       required: true,
     },
   },

@@ -3,9 +3,7 @@
     <div class="container">
       <div class="left">
         <div class="col-1">
-          <router-link class="header" :to="{ name: 'WelcomeView' }">
-            Learn Vue
-          </router-link>
+          <router-link class="header" :to="{ name: 'WelcomeView' }"> Learn Vue </router-link>
           <ul>
             <li>
               <a href="#">
@@ -13,30 +11,28 @@
               </a>
             </li>
             <li>
-              <a href="#"><v-icon class="svg-icon"> {{ mdiTwitter }}</v-icon></a>
+              <a href="#">
+                <v-icon class="svg-icon"> {{ mdiTwitter }}</v-icon>
+              </a>
             </li>
             <li>
-              <a href="#"><v-icon class="svg-icon"> {{ mdiInstagram }}</v-icon></a>
+              <a href="#">
+                <v-icon class="svg-icon"> {{ mdiInstagram }}</v-icon>
+              </a>
             </li>
             <li>
-              <a href="#"><v-icon class="svg-icon"> {{ mdiLinkedin }}</v-icon></a>
+              <a href="#">
+                <v-icon class="svg-icon"> {{ mdiLinkedin }}</v-icon>
+              </a>
             </li>
           </ul>
         </div>
         <div class="col-2">
           <ul>
-            <router-link class="link" :to="{ name: 'WelcomeView' }">
-              Welcome
-            </router-link>
-            <router-link class="link" :to="{ name: 'PostsView' }">
-              Posts
-            </router-link>
-            <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }">
-              Create Post
-            </router-link>
-            <router-link v-if="!user" class="link" :to="{ name: 'LoginView' }">
-              Login In / Register
-            </router-link>
+            <router-link class="link" :to="{ name: 'WelcomeView' }"> Welcome </router-link>
+            <router-link class="link" :to="{ name: 'PostsView' }"> Posts </router-link>
+            <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"> Create Post </router-link>
+            <router-link v-if="user" class="link" :to="{ name: 'LoginView' }"> Login / Register </router-link>
           </ul>
         </div>
       </div>
@@ -54,8 +50,7 @@ import {
 
 export default {
   name: 'FooterComponent',
-  components: {
-  },
+  components: {},
   data() {
     return {
       mdiYoutube,
