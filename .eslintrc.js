@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
     node: true,
   },
   extends: ['plugin:vue/recommended', '@vue/airbnb'],
@@ -13,7 +14,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    // 'max-len': 0,
+    'max-len': 0,
     'linebreak-style': 0,
     'template-curly-spacing': 'off',
     indent: [
@@ -24,6 +25,11 @@ module.exports = {
       },
     ],
     'no-unused-vars': 'off',
-    'vue/max-attributes-per-line': ['error', { singleline: { max: 3 }, multiline: { max: 3 } }],
+    'vue/max-attributes-per-line': 'off',
+    'vue/singleline-html-element-content-newline': 0,
+    'vue/html-self-closing': 'off',
+    'vue/multi-word-component-names': 'off',
+    'object-curly-newline': 'off',
+    'vuejs-accessibility/click-events-have-key-events': 'off',
   },
 };
