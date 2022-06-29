@@ -26,15 +26,15 @@
         <div class="col-2">
           <ul>
             <router-link class="link" :to="{ name: 'WelcomeView' }">
-              Home
+              Welcome
             </router-link>
-            <router-link class="link" :to="{ name: 'Posts' }">
+            <router-link class="link" :to="{ name: 'PostsView' }">
               Posts
             </router-link>
             <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }">
               Create Post
             </router-link>
-            <router-link v-if="!user" class="link" :to="{ name: 'Login' }">
+            <router-link v-if="!user" class="link" :to="{ name: 'LoginView' }">
               Login In / Register
             </router-link>
           </ul>
@@ -53,7 +53,7 @@ import {
 } from '@mdi/js';
 
 export default {
-  name: 'FooterVue',
+  name: 'FooterComponent',
   components: {
   },
   data() {
