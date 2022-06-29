@@ -11,6 +11,8 @@
 <script>
 import NavigationComponent from '@/components/Navigation.vue';
 import FooterComponent from '@/components/Footer.vue';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 export default {
   name: 'App',
@@ -29,6 +31,13 @@ export default {
     },
   },
   created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.$store.commit('updateUser', user);
+      if (user) {
+        this.$store.dispatch('getCurrentUser', user);
+        console.log(this.$store.state.profileEmail);
+      }
+    });
     this.checkRoute();
   },
   methods: {
@@ -36,20 +45,20 @@ export default {
       if (this.$route.name === 'LoginView' || this.$route.name === 'RegisterView' || this.$route.name === 'ForgotPasswordView') {
         this.navigation = true;
         return;
-      } this.navigation = false;
+      }
+      this.navigation = false;
     },
   },
 };
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .app {
   display: flex;
@@ -98,6 +107,11 @@ export default {
   &:hover {
     background-color: rgba(48, 48, 48, 0.7);
   }
+}
+.error {
+  text-align: center;
+  font-size: 12px;
+  color: red;
 }
 .post-card-wrap {
   position: relative;
