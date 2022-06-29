@@ -2,34 +2,25 @@
   <div class="post-card">
     <div v-show="editPost" class="icons">
       <div class="icon">
-        <v-icon class="edit">
-          {{ mdiPencil }}
-        </v-icon>
+        <v-icon class="edit">{{ mdiPencil }}</v-icon>
       </div>
       <div class="icon">
-        <v-icon class="delete">
-          {{ mdiDelete }}
-        </v-icon>
+        <v-icon class="delete">{{ mdiDelete }}</v-icon>
       </div>
     </div>
-    <img :src="require(`@/assets/postCards/${post.postCoverPhoto}.jpg`)" alt="">
+    <img :src="require(`@/assets/postCards/${post.postCoverPhoto}.jpg`)" alt="" />
     <div class="info">
       <h4>{{ post.postTitle }}</h4>
       <h6>Posted on: {{ post.postDate }}</h6>
       <router-link class="link" to="#">
-        View The Post
-        <v-icon class="arrow">
-          {{ mdiArrowRight }}
-        </v-icon>
+        View The Post <v-icon class="arrow">{{ mdiArrowRight }}</v-icon>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import {
-  mdiArrowRight, mdiCircleEditOutline, mdiPencil, mdiDelete,
-} from '@mdi/js';
+import { mdiArrowRight, mdiCircleEditOutline, mdiPencil, mdiDelete } from '@mdi/js';
 
 export default {
   name: 'PostCardComponent',
@@ -90,7 +81,7 @@ export default {
         background-color: #303030;
         .edit,
         .delete {
-            color: #fff;
+          color: #fff;
         }
       }
       &:nth-child(1) {
