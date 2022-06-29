@@ -1,6 +1,6 @@
 <template>
   <div class="post-card">
-    <div class="icons">
+    <div v-show="editPost" class="icons">
       <div class="icon">
         <v-icon class="edit">
           {{ mdiPencil }}
@@ -32,7 +32,7 @@ import {
 } from '@mdi/js';
 
 export default {
-  name: 'PostsCardVue',
+  name: 'PostCardComponent',
   props: {
     post: {
       type: Object,
@@ -46,6 +46,11 @@ export default {
       mdiPencil,
       mdiDelete,
     };
+  },
+  computed: {
+    editPost() {
+      return this.$store.state.editPost;
+    },
   },
 };
 </script>
