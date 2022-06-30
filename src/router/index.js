@@ -5,6 +5,9 @@ import PostsView from '@/views/Posts.vue';
 import LoginView from '@/views/Login.vue';
 import RegisterView from '@/views/Register.vue';
 import ForgotPasswordView from '@/views/ForgotPassword.vue';
+import ProfileView from '@/views/Profile.vue';
+import AdminView from '@/views/Admin.vue';
+import CreatePostView from '@/views/CreatePost.vue';
 
 Vue.use(VueRouter);
 
@@ -47,6 +50,30 @@ const routes = [
     component: ForgotPasswordView,
     meta: {
       title: 'Forgot Password',
+    },
+  },
+  {
+    path: '/profile',
+    name: 'ProfileView',
+    component: ProfileView,
+    meta: {
+      title: 'Profile',
+    },
+  },
+  {
+    path: '/admin',
+    name: 'AdminView',
+    component: AdminView,
+    meta: {
+      title: 'Admin',
+    },
+  },
+  {
+    path: '/create-post',
+    name: 'CreatePostView',
+    component: CreatePostView,
+    meta: {
+      title: 'Create Post',
     },
   },
 ];
