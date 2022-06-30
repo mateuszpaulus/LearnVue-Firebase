@@ -1,23 +1,21 @@
-.<template>
+.
+<template>
   <div class="welcome">
-    <PostComponent :post="welcomeScreen" />
+    <PostComponent v-if="!user" :post="welcomeScreen" />
     <PostComponent v-for="(post, index) in samplePost" :key="index" :post="post" />
     <div class="post-card-wrap">
       <div class="container">
-        <h3>View More Recent Blogs</h3>
+        <h3>View More Recent Posts</h3>
         <div class="post-cards">
           <PostCardComponent v-for="(post, index) in samplePostCards" :key="index" :post="post" />
         </div>
       </div>
     </div>
-    <div class="updates">
+    <div v-if="!user" class="updates">
       <div class="container">
         <h2>Never miss a post. Register for your free account today!</h2>
         <router-link class="router-button" to="#">
-          Register for Learn Vue
-          <v-icon class="arrow arrow-light">
-            {{ mdiArrowRight }}
-          </v-icon>
+          Register for Learn Vue <v-icon class="arrow arrow-light">{{ mdiArrowRight }}</v-icon>
         </router-link>
       </div>
     </div>
@@ -37,22 +35,19 @@ export default {
       mdiArrowRight,
       welcomeScreen: {
         title: 'Welcome!',
-        post:
-          'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
+        post: 'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
         welcomeScreen: true,
         photo: 'coding',
       },
       samplePost: [
         {
           title: 'This is a new Post',
-          postHTML:
-            'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
+          postHTML: 'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
           postCoverPhoto: 'beautiful-stories',
         },
         {
           title: 'This is a new Post',
-          postHTML:
-            'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
+          postHTML: 'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
           postCoverPhoto: 'designed-for-everyone',
         },
       ],
@@ -61,6 +56,9 @@ export default {
   computed: {
     samplePostCards() {
       return this.$store.state.samplePostCards;
+    },
+    user() {
+      return this.$store.state.user;
     },
   },
 };

@@ -3,40 +3,28 @@
     <form class="login">
       <p class="login-register">
         Don't have an account?
-        <router-link class="router-link" :to="{ name: 'RegisterView' }">
-          Register
-        </router-link>
+        <router-link class="router-link" :to="{ name: 'RegisterView' }"> Register </router-link>
       </p>
       <h2>Login to Learn Vue</h2>
       <div class="inputs">
         <div class="input">
-          <input
-            v-model="email" type="text" placeholder="Email"
-            aria-label="email"
-          >
+          <input v-model="email" type="text" placeholder="Email" aria-label="email" />
           <v-icon class="icon">
             {{ mdiEmail }}
           </v-icon>
         </div>
         <div class="input">
-          <input
-            v-model="password" type="text" placeholder="Password"
-            aria-label="password"
-          >
+          <input v-model="password" type="text" placeholder="Password" aria-label="password" />
           <v-icon class="icon">
             {{ mdiLock }}
           </v-icon>
         </div>
+        <div v-show="error" class="error">
+          {{ errorMsg }}
+        </div>
       </div>
-      <router-link
-        class="forgot-password"
-        :to="{ name: 'ForgotPasswordView'}"
-      >
-        Forgot your password?
-      </router-link>
-      <button class="router-button">
-        Sign In
-      </button>
+      <router-link class="forgot-password" :to="{ name: 'ForgotPasswordView' }"> Forgot your password? </router-link>
+      <button class="router-button" @click.prevent="signIn">Log In</button>
       <div class="angle" />
     </form>
     <div class="background" />
@@ -45,6 +33,8 @@
 
 <script>
 import { mdiEmail, mdiLock } from '@mdi/js';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 export default {
   name: 'LoginView',
@@ -52,9 +42,29 @@ export default {
     return {
       mdiEmail,
       mdiLock,
-      email: null,
-      password: null,
+      email: '',
+      password: '',
+      error: null,
+      errorMsg: '',
     };
+  },
+  methods: {
+    async signIn() {
+      if (this.email !== '' && this.password !== '') {
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then(() => {
+            this.$router.push({ name: 'WelcomeView' });
+            this.error = false;
+            this.errorMsg = '';
+          })
+          .catch((err) => {
+            this.error = true;
+            this.errorMsg = err.message;
+          });
+      }
+    },
   },
 };
 </script>
@@ -164,7 +174,7 @@ export default {
     display: none;
     flex: 2;
     background-size: cover;
-    background-image: url("../assets/background.jpg");
+    background-image: url('../assets/background.jpg');
     width: 100%;
     height: 100%;
     @media (min-width: 900px) {

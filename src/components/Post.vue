@@ -1,40 +1,22 @@
-.<template>
-  <div class="post-wrapper no-user">
+<template>
+  <div class="post-wrapper" :class="{'no-user': !user}">
     <div class="post-content">
       <div>
-        <h2 v-if="post.welcomeScreen">
-          {{ post.title }}
-        </h2>
-        <h2 v-else>
-          {{ post.title }}
-        </h2>
-        <p v-if="post.welcomeScreen">
-          {{ post.post }}
-        </p>
-        <p v-else class="content-preview">
-          {{ post.postHTML }}
-        </p>
-        <router-link v-if="post.welcomeScreen" class="link link-light" to="#">
-          Login/Register
-          <v-icon class="arrow arrow-light">
-            {{ mdiArrowRight }}
-          </v-icon>
+        <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
+        <h2 v-else>{{ post.title }}</h2>
+        <p v-if="post.welcomeScreen">{{ post.post }}</p>
+        <p v-else class="content-preview">{{ post.postHTML }}</p>
+        <router-link v-if="post.welcomeScreen" class="link link-light" :to="{ name: 'LoginView' }">
+          Login/Register<v-icon class="arrow arrow-light">{{ mdiArrowRight }}</v-icon>
         </router-link>
-        <router-link v-else class="link" to="#">
-          View The Post
-          <v-icon class="arrow">
-            {{ mdiArrowRight }}
-          </v-icon>
+        <router-link v-else class="link" :to="{ name: 'PostsView' }">
+          View The Posts <v-icon class="arrow">{{ mdiArrowRight }}</v-icon>
         </router-link>
       </div>
     </div>
     <div class="post-photo">
-      <img
-        v-if="post.welcomeScreen"
-        :src="require(`@/assets/postPhotos/${post.photo}.jpg`)"
-        alt=""
-      >
-      <img v-else :src="require(`@/assets/postPhotos/${post.postCoverPhoto}.jpg`)" alt="">
+      <img v-if="post.welcomeScreen" :src="require(`@/assets/postPhotos/${post.photo}.jpg`)" alt="" />
+      <img v-else :src="require(`@/assets/postPhotos/${post.postCoverPhoto}.jpg`)" alt="" />
     </div>
   </div>
 </template>
@@ -55,7 +37,11 @@ export default {
       mdiArrowRight,
     };
   },
-
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+  },
 };
 </script>
 
@@ -168,5 +154,4 @@ export default {
     color: #fff;
   }
 }
-
 </style>
