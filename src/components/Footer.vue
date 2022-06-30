@@ -6,24 +6,16 @@
           <router-link class="header" :to="{ name: 'WelcomeView' }"> Learn Vue </router-link>
           <ul>
             <li>
-              <a href="#">
-                <v-icon class="svg-icon"> {{ mdiYoutube }}</v-icon>
-              </a>
+              <a href="#"><v-icon class="svg-icon"> {{ mdiYoutube }}</v-icon></a>
             </li>
             <li>
-              <a href="#">
-                <v-icon class="svg-icon"> {{ mdiTwitter }}</v-icon>
-              </a>
+              <a href="#"><v-icon class="svg-icon"> {{ mdiTwitter }}</v-icon></a>
             </li>
             <li>
-              <a href="#">
-                <v-icon class="svg-icon"> {{ mdiInstagram }}</v-icon>
-              </a>
+              <a href="#"><v-icon class="svg-icon"> {{ mdiInstagram }}</v-icon></a>
             </li>
             <li>
-              <a href="#">
-                <v-icon class="svg-icon"> {{ mdiLinkedin }}</v-icon>
-              </a>
+              <a href="#"><v-icon class="svg-icon"> {{ mdiLinkedin }}</v-icon></a>
             </li>
           </ul>
         </div>
@@ -31,8 +23,8 @@
           <ul>
             <router-link class="link" :to="{ name: 'WelcomeView' }"> Welcome </router-link>
             <router-link class="link" :to="{ name: 'PostsView' }"> Posts </router-link>
-            <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"> Create Post </router-link>
-            <router-link v-if="user" class="link" :to="{ name: 'LoginView' }"> Login / Register </router-link>
+            <router-link v-if="admin" class="link" :to="{ name: 'CreatePostView' }"> Create Post </router-link>
+            <router-link v-if="!user" class="link" :to="{ name: 'LoginView' }"> Login / Register </router-link>
           </ul>
         </div>
       </div>
@@ -44,9 +36,7 @@
 </template>
 
 <script>
-import {
-  mdiYoutube, mdiTwitter, mdiInstagram, mdiLinkedin,
-} from '@mdi/js';
+import { mdiYoutube, mdiTwitter, mdiInstagram, mdiLinkedin } from '@mdi/js';
 
 export default {
   name: 'FooterComponent',
