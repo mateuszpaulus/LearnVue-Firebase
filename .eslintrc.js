@@ -28,7 +28,6 @@ module.exports = {
     'vue/max-attributes-per-line': 'off',
     'vue/singleline-html-element-content-newline': 0,
     'vue/html-self-closing': 'off',
-    'vue/multi-word-component-names': 'off',
     'object-curly-newline': 'off',
     'vuejs-accessibility/click-events-have-key-events': 'off',
     'vuejs-accessibility/label-has-for': 'off',
