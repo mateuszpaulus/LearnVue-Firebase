@@ -1,18 +1,18 @@
 <template>
   <div class="post-card">
     <div v-show="editPost" class="icons">
-      <div class="icon">
+      <div class="icon" @click="editPostMeth">
         <v-icon class="edit">{{ mdiPencil }}</v-icon>
       </div>
-      <div class="icon">
+      <div class="icon" @click="deletePost">
         <v-icon class="delete">{{ mdiDelete }}</v-icon>
       </div>
     </div>
-    <img :src="require(`@/assets/postCards/${post.postCoverPhoto}.jpg`)" alt="" />
+    <img :src="post.postCoverPhoto" alt="" />
     <div class="info">
       <h4>{{ post.postTitle }}</h4>
-      <h6>Posted on: {{ post.postDate }}</h6>
-      <router-link class="link" to="#">
+      <h6>Posted on: {{ new Date(post.postDate).toLocaleString('en-us', { dateStyle: 'long' }) }}</h6>
+      <router-link class="link" :to="{ name: 'ViewPostView', params: { postId: post.postID } }">
         View The Post <v-icon class="arrow">{{ mdiArrowRight }}</v-icon>
       </router-link>
     </div>
@@ -41,6 +41,14 @@ export default {
   computed: {
     editPost() {
       return this.$store.state.editPost;
+    },
+  },
+  methods: {
+    deletePost() {
+      this.$store.dispatch('deletePost', this.post.postID);
+    },
+    editPostMeth() {
+      this.$router.push({ name: 'EditPost', params: { postId: this.post.postID } });
     },
   },
 };

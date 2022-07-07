@@ -5,20 +5,20 @@
         <span>Toggle Editing Post</span>
         <input v-model="editPost" type="checkbox" aria-label="editPost" />
       </div>
-      <PostCardVue v-for="(post, index) in samplePostCards" :key="index" :post="post" />
+      <PostCardComponent v-for="(post, index) in postsStorage" :key="index" :post="post" />
     </div>
   </div>
 </template>
 
 <script>
-import PostCardVue from '@/components/PostCard.vue';
+import PostCardComponent from '@/components/PostCard.vue';
 
 export default {
   name: 'PostsView',
-  components: { PostCardVue },
+  components: { PostCardComponent },
   computed: {
-    samplePostCards() {
-      return this.$store.state.samplePostCards;
+    postsStorage() {
+      return this.$store.state.postsStorage;
     },
     editPost: {
       get() {

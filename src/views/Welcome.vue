@@ -2,12 +2,12 @@
 <template>
   <div class="welcome">
     <PostComponent v-if="!user" :post="welcomeScreen" />
-    <PostComponent v-for="(post, index) in samplePost" :key="index" :post="post" />
+    <PostComponent v-for="(post, index) in postsGetters" :key="index" :post="post" />
     <div class="post-card-wrap">
       <div class="container">
         <h3>View More Recent Posts</h3>
         <div class="post-cards">
-          <PostCardComponent v-for="(post, index) in samplePostCards" :key="index" :post="post" />
+          <PostCardComponent v-for="(post, index) in postsCardsGetters" :key="index" :post="post" />
         </div>
       </div>
     </div>
@@ -39,23 +39,29 @@ export default {
         welcomeScreen: true,
         photo: 'coding',
       },
-      samplePost: [
-        {
-          title: 'This is a new Post',
-          postHTML: 'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
-          postCoverPhoto: 'beautiful-stories',
-        },
-        {
-          title: 'This is a new Post',
-          postHTML: 'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
-          postCoverPhoto: 'designed-for-everyone',
-        },
-      ],
+      // samplePost: [
+      //   {
+      //     title: 'This is a new Post',
+      //     postHTML: 'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
+      //     postCoverPhoto: 'beautiful-stories',
+      //   },
+      //   {
+      //     title: 'This is a new Post',
+      //     postHTML: 'Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!',
+      //     postCoverPhoto: 'designed-for-everyone',
+      //   },
+      // ],
     };
   },
   computed: {
-    samplePostCards() {
-      return this.$store.state.samplePostCards;
+    // samplePostCards() {
+    //   return this.$store.state.samplePostCards;
+    // },
+    postsGetters() {
+      return this.$store.getters.postsGetters;
+    },
+    postsCardsGetters() {
+      return this.$store.getters.postsCardsGetters;
     },
     user() {
       return this.$store.state.user;
