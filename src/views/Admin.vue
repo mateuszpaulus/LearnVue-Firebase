@@ -31,6 +31,10 @@ export default {
       const addAdmin = await firebase.functions().httpsCallable('addAdminRole');
       const result = await addAdmin({ email: this.adminEmail });
       this.functionMsg = result.data.message;
+      this.adminEmail = '';
+      setTimeout(() => {
+        this.functionMsg = null;
+      }, 3000);
     },
   },
 };
