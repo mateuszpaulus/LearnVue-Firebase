@@ -8,6 +8,11 @@ import ForgotPasswordView from '@/views/ForgotPassword.vue';
 import ProfileView from '@/views/Profile.vue';
 import AdminView from '@/views/Admin.vue';
 import CreatePostView from '@/views/CreatePost.vue';
+import PreviewPostView from '@/views/PreviewPost.vue';
+import ViewPostView from '@/views/ViewPost.vue';
+import EditPost from '@/views/EditPost.vue';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 Vue.use(VueRouter);
 
@@ -18,6 +23,7 @@ const routes = [
     component: WelcomeView,
     meta: {
       title: 'Welcome',
+      requiresAuth: false,
     },
   },
   {
@@ -26,6 +32,7 @@ const routes = [
     component: PostsView,
     meta: {
       title: 'Posts',
+      requiresAuth: false,
     },
   },
   {
@@ -34,6 +41,7 @@ const routes = [
     component: LoginView,
     meta: {
       title: 'Login',
+      requiresAuth: false,
     },
   },
   {
@@ -42,6 +50,7 @@ const routes = [
     component: RegisterView,
     meta: {
       title: 'Register',
+      requiresAuth: false,
     },
   },
   {
@@ -50,6 +59,7 @@ const routes = [
     component: ForgotPasswordView,
     meta: {
       title: 'Forgot Password',
+      requiresAuth: false,
     },
   },
   {
@@ -58,6 +68,7 @@ const routes = [
     component: ProfileView,
     meta: {
       title: 'Profile',
+      requiresAuth: true,
     },
   },
   {
@@ -66,6 +77,8 @@ const routes = [
     component: AdminView,
     meta: {
       title: 'Admin',
+      requiresAuth: true,
+      requiresAdmin: true,
     },
   },
   {
@@ -74,6 +87,37 @@ const routes = [
     component: CreatePostView,
     meta: {
       title: 'Create Post',
+      requiresAuth: true,
+      requiresAdmin: true,
+    },
+  },
+  {
+    path: '/preview-post',
+    name: 'PreviewPostView',
+    component: PreviewPostView,
+    meta: {
+      title: 'Preview Post',
+      requiresAuth: true,
+      requiresAdmin: true,
+    },
+  },
+  {
+    path: '/view-post/:postId',
+    name: 'ViewPostView',
+    component: ViewPostView,
+    meta: {
+      title: 'View Post',
+      requiresAuth: false,
+    },
+  },
+  {
+    path: '/edit-post/:postId',
+    name: 'EditPost',
+    component: EditPost,
+    meta: {
+      title: 'Edit Post',
+      requiresAuth: true,
+      requiresAdmin: true,
     },
   },
 ];
@@ -87,6 +131,27 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} | Learn Vue`;
   next();
+});
+router.beforeEach(async (to, from, next) => {
+  const user = firebase.auth().currentUser;
+  let admin = null;
+  if (user) {
+    const token = await user.getIdTokenResult();
+    admin = token.claims.admin;
+  }
+  if (to.matched.some((res) => res.meta.requiresAuth)) {
+    if (user) {
+      if (to.matched.some((res) => res.meta.requiresAdmin)) {
+        if (admin) {
+          return next();
+        }
+        return next({ name: 'WelcomeView' });
+      }
+      return next();
+    }
+    return next({ name: 'WelcomeView' });
+  }
+  return next();
 });
 
 export default router;
