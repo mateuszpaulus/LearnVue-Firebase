@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrapper">
-    <div class="app">
+    <div v-if="$store.state.postLoaded" class="app">
       <NavigationComponent v-if="!navigation" />
       <router-view />
       <FooterComponent v-if="!navigation" />
@@ -35,9 +35,11 @@ export default {
       this.$store.commit('updateUser', user);
       if (user) {
         this.$store.dispatch('getCurrentUser', user);
+        console.log(user);
       }
     });
     this.checkRoute();
+    this.$store.dispatch('getPost');
   },
   methods: {
     checkRoute() {
