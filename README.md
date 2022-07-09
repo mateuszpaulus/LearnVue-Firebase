@@ -1,4 +1,4 @@
 # learnvue-firebase
 
 
-Live Site URL: https://learnvuepost.netlify.app/
+Live Site URL: https://learnvue-firebase.web.app/
